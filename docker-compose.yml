@@ -1,0 +1,37 @@
+version: "3.0"
+
+services:
+  python:
+    image: rosyuku/mydevenv_python:0.2.0
+    shm_size: $shm_size
+    tty: true
+    ports: 
+      - $RDPport:3389
+      - $SSHport:22
+      - $Jupyterport:8888
+      - $WebAPPport:8080
+    command:
+      bash -c '/usr/bin/supervisord -c /etc/supervisor/supervisord.conf'
+    volumes: 
+      - ./workdir:/home/$user_name/Workdir/:rw
+
+  mysql:
+    image: rosyuku/mydevenv_mysql:0.1.0
+    ports: 
+      - $Mysqlport:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: $root_password
+      MYSQL_DATABASE: $db_name
+      MYSQL_USER: $user_name
+      MYSQL_PASSWORD: $user_password
+    entrypoint: 
+      docker-entrypoint.sh
+    command: 
+      mysqld  
+
+  metabase:
+    image: metabase/metabase
+    ports: 
+      - $Metabaseport:3000
+
+    
