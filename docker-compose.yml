@@ -36,4 +36,10 @@ services:
       - $Metabaseport:3000
     volumes: 
       - ./volume/metabase:/metabase-data/:rw
+
+  nginx:
+    build: 
+      context: ./nginx
+    ports: 
+      - $Nginxport:80
     
