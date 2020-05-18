@@ -4,9 +4,8 @@ LABEL version="0.1.0"
 
 #必要ライブラリ
 RUN apt-get update && \
-    apt-get install mysql-client &&
+    apt-get install -y mysql-client default-libmysqlclient-dev
 
 #Pythonライブラリ
 COPY ./config/requirements.txt /root/requirements.txt
-RUN /opt/conda/bin/conda install --file /root/requirements.txt && \
-    /opt/conda/bin/pip install -r /root/requirements.txt
+RUN while read requirement; do /opt/conda/bin/conda install --yes $requirement || /opt/conda/bin/pip install $requirement; done < /root/requirements.txt
