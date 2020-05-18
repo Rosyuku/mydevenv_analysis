@@ -2,7 +2,8 @@ version: "3.0"
 
 services:
   python:
-    image: rosyuku/mydevenv_python:0.2.0
+    build: 
+      context: ./python
     shm_size: $shm_size
     tty: true
     ports: 
