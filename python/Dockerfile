@@ -8,4 +8,8 @@ RUN apt-get update && \
 
 #Pythonライブラリ
 COPY ./config/requirements.txt /root/requirements.txt
-RUN while read requirement; do /opt/conda/bin/conda install --yes $requirement || /opt/conda/bin/pip install $requirement; done < /root/requirements.txt
+RUN /opt/conda/bin/pip install -r /root/requirements.txt
+#RUN while read requirement; do /opt/conda/bin/conda install --yes $requirement || /opt/conda/bin/pip install $requirement; done < /root/requirements.txt
+
+#pip
+#mysqlフォルダ
