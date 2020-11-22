@@ -1,0 +1,3 @@
+[submodule "volume/python/pyode_trial"]
+	path = volume/python/pyode_trial
+	url = https://github.com/Rosyuku/pyode_trial.git
